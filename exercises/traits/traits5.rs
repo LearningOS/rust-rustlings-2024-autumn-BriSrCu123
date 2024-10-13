@@ -1,14 +1,3 @@
-// traits5.rs
-//
-// Your task is to replace the '??' sections so the code compiles.
-//
-// Don't change any line other than the marked one.
-//
-// Execute `rustlings hint traits5` or use the `hint` watch subcommand for a
-// hint.
-
-// I AM NOT DONE
-
 pub trait SomeTrait {
     fn some_function(&self) -> bool {
         true
@@ -21,6 +10,12 @@ pub trait OtherTrait {
     }
 }
 
+// 定义一个新的 trait，继承 `SomeTrait` 和 `OtherTrait`
+pub trait CombinedTrait: SomeTrait + OtherTrait {}
+
+impl CombinedTrait for SomeStruct {}
+impl CombinedTrait for OtherStruct {}
+
 struct SomeStruct {}
 struct OtherStruct {}
 
@@ -29,12 +24,12 @@ impl OtherTrait for SomeStruct {}
 impl SomeTrait for OtherStruct {}
 impl OtherTrait for OtherStruct {}
 
-// YOU MAY ONLY CHANGE THE NEXT LINE
-fn some_func(item: ??) -> bool {
+// 修改函数参数类型为 `CombinedTrait` 的 trait 对象
+fn some_func(item: &dyn CombinedTrait) -> bool {
     item.some_function() && item.other_function()
 }
 
 fn main() {
-    some_func(SomeStruct {});
-    some_func(OtherStruct {});
+    some_func(&SomeStruct {});
+    some_func(&OtherStruct {});
 }

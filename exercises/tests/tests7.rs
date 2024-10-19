@@ -32,9 +32,6 @@
 // to pass this exercise.
 //
 // Execute `rustlings hint tests7` or use the `hint` watch subcommand for a
-// hint.
-
-// I AM NOT DONE
 
 fn main() {}
 

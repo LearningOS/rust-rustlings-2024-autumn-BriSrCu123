@@ -1,11 +1,3 @@
-// tests6.rs
-//
-// In this example we take a shallow dive into the Rust standard library's
-// unsafe functions. Fix all the question marks and todos to make the test
-// pass.
-//
-// Execute `rustlings hint tests6` or use the `hint` watch subcommand for a
-
 struct Foo {
     a: u128,
     b: Option<String>,
@@ -24,11 +16,10 @@ unsafe fn raw_pointer_to_box(ptr: *mut Foo) -> Box<Foo> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::time::Instant;
 
     #[test]
     fn test_success() {
-        let data = Box::new(Foo { a: 1, b: None });
+        let data = Box::new(Foo { a: 1, b: Some("hello".to_owned()) }); // 为 `b` 字段赋值
 
         let ptr_1 = &data.a as *const u128 as usize;
         // SAFETY: We pass an owned box of `Foo`.
@@ -37,6 +28,6 @@ mod tests {
         let ptr_2 = &ret.a as *const u128 as usize;
 
         assert!(ptr_1 == ptr_2);
-        assert!(ret.b == Some("hello".to_owned()));
+        assert!(ret.b == Some("hello".to_owned())); // 检查 `b` 字段是否为 Some("hello")
     }
 }

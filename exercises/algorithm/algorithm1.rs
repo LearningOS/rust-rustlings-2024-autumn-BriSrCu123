@@ -1,4 +1,4 @@
-use std::fmt::{self, Display, Formatter};
+use std::fmt::{self, Display, Formatter}; 
 use std::ptr::NonNull;
 
 #[derive(Debug)]
@@ -23,7 +23,10 @@ struct LinkedList<T> {
     end: Option<NonNull<Node<T>>>,
 }
 
-impl<T> Default for LinkedList<T> {
+impl<T> Default for LinkedList<T> 
+where
+    T: Clone + std::cmp::PartialOrd,
+{
     fn default() -> Self {
         Self::new()
     }
